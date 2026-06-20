@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitectura de la Riqueza — Audiolibro Sincronizado</title>
+    <meta name="description" content="Manual interactivo y audiolibro de la obra Arquitectura de la Riqueza por Albert Sierra, Ginebra Suiza. Narrado por Álvaro.">
+    
+    <!-- Premium Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- LEFT COLUMN: COVER, PLAYER AND CHAPTER LIST -->
+        <aside class="player-sidebar">
+            
+            <!-- Book Identity Card -->
+            <div class="book-info">
+                <div class="cover-wrapper">
+                    <img src="cover_art.png" alt="Arquitectura de la Riqueza" class="cover-image" id="cover-img">
+                </div>
+                <h1 class="book-title">Arquitectura de la Riqueza</h1>
+                <p class="book-author">Por <span>Albert Sierra</span></p>
+                <p class="book-author" style="font-size: 0.8rem; opacity: 0.8;">Ginebra, Suiza 🇨🇭</p>
+                <span class="narrator-badge">Narrador: Álvaro (España) 🎙️</span>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="audio-player-card">
+                <div class="player-controls">
+                    <button class="control-btn" id="prev-btn" title="Párrafo anterior">⏮️</button>
+                    <button class="control-btn play-btn" id="play-btn" title="Iniciar narración">▶️</button>
+                    <button class="control-btn" id="next-btn" title="Siguiente párrafo">⏭️</button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <div class="progress-bar-container" id="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-time">
+                        <span id="current-time">Párr. 1</span>
+                        <span id="total-time">Total: 0</span>
+                    </div>
+                </div>
+
+                <!-- Secondary Controls (Speed and Voice) -->
+                <div class="secondary-controls">
+                    <div>
+                        <label for="speed-select" style="font-size: 0.7rem; color: var(--text-secondary); display: block; margin-bottom: 2px;">Velocidad</label>
+                        <select id="speed-select" class="speed-select" title="Velocidad de reproducción">
+                            <option value="0.75">0.75x</option>
+                            <option value="1.0" selected>1.0x (Normal)</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                            <option value="1.75">1.75x</option>
+                            <option value="2.0">2.0x</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="voice-select" style="font-size: 0.7rem; color: var(--text-secondary); display: block; margin-bottom: 2px;">Voz / Lector</label>
+                        <select id="voice-select" class="voice-select" title="Seleccionar voz">
+                            <!-- Populated dynamically by app.js -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls (Chapters) -->
+            <div style="display: flex; gap: 8px; justify-content: space-between;">
+                <button class="control-btn" id="prev-cap-btn" style="flex: 1; border-radius: 8px; font-size: 0.8rem;" title="Capítulo Anterior">⬅️ Cap. Anterior</button>
+                <button class="control-btn" id="next-cap-btn" style="flex: 1; border-radius: 8px; font-size: 0.8rem;" title="Siguiente Capítulo">Siguiente Cap. ➡️</button>
+            </div>
+
+            <!-- Chapter List -->
+            <div class="chapters-container">
+                <h3 class="section-title">Índice del Libro</h3>
+                <ul class="chapter-list">
+                    <li class="chapter-item active" data-id="introduccion">
+                        <span>Introducción</span>
+                        <span class="chapter-duration">Entrada</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_01">
+                        <span>Módulo 1: Error del Dinero</span>
+                        <span class="chapter-duration">Cap. 1</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_02">
+                        <span>Módulo 2: Unidad de Riqueza</span>
+                        <span class="chapter-duration">Cap. 2</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_03">
+                        <span>Módulo 3: Activo Real</span>
+                        <span class="chapter-duration">Cap. 3</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_04">
+                        <span>Módulo 4: Criterios de Selección</span>
+                        <span class="chapter-duration">Cap. 4</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_05">
+                        <span>Módulo 5: Principio de No Venta</span>
+                        <span class="chapter-duration">Cap. 5</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_06">
+                        <span>Módulo 6: Interés Compuesto</span>
+                        <span class="chapter-duration">Cap. 6</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_07">
+                        <span>Módulo 7: Construcción Cartera</span>
+                        <span class="chapter-duration">Cap. 7</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_08">
+                        <span>Módulo 8: Riesgo Estructural</span>
+                        <span class="chapter-duration">Cap. 8</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_09">
+                        <span>Módulo 9: Apalancamiento</span>
+                        <span class="chapter-duration">Cap. 9</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_10">
+                        <span>Módulo 10: Escalado Patrimonio</span>
+                        <span class="chapter-duration">Cap. 10</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_11">
+                        <span>Módulo 11: Sistemas Fiscales</span>
+                        <span class="chapter-duration">Cap. 11</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_12">
+                        <span>Módulo 12: Restricciones</span>
+                        <span class="chapter-duration">Cap. 12</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_13">
+                        <span>Módulo 13: Errores Riqueza</span>
+                        <span class="chapter-duration">Cap. 13</span>
+                    </li>
+                    <li class="chapter-item" data-id="modulo_14">
+                        <span>Módulo 14: Control Continuo</span>
+                        <span class="chapter-duration">Cap. 14</span>
+                    </li>
+                    <li class="chapter-item" data-id="conclusion">
+                        <span>Conclusión</span>
+                        <span class="chapter-duration">Cierre</span>
+                    </li>
+                </ul>
+            </div>
+
+        </aside>
+
+        <!-- RIGHT COLUMN: INTERACTIVE E-READER -->
+        <main class="reader-container">
+            <article class="reader-content" id="reader-content">
+                <!-- Populated dynamically by app.js from chapters_data.js -->
+            </article>
+        </main>
+
+    </div>
+
+    <!-- Pre-compiled Chapter Database Script -->
+    <script src="chapters_data.js"></script>
+    
+    <!-- Main Application script -->
+    <script src="app.js"></script>
+
+</body>
+</html>
